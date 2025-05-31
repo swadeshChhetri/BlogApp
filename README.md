@@ -1,5 +1,7 @@
 # MyBlogApp Frontend
 
+MyBlog is a full-stack blog platform built using **React + Vite** for the frontend and **Laravel** for the backend. The frontend provides a fast and responsive user interface, while the backend handles APIs, authentication, and database management.
+
 This is the frontend for the MyBlogApp, built using React and Vite.
 
 ## Technologies Used
