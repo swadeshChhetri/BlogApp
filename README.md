@@ -39,7 +39,7 @@ Follow these steps to get the app running locally:
 ```bash
 git clone https://github.com/swadeshChhetri/BlogApp.git
 
-cd myblog
+cd BlogApp
 ```
 
 2. Install dependencies
