@@ -1,0 +1,43 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+
+# Build output
+dist
+build
+dist-ssr
+
+# Environment files (exclude local and potentially all if sensitive)
+*.local
+.env*
+!/.env.example # Keep the example file if you have one
+
+# Editor and system files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+
+# Cache and temporary files
+.cache
+temp
+tmp
+
+# Package manager specific
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
