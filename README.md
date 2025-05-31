@@ -13,16 +13,55 @@ This is the frontend for the MyBlogApp, built using React and Vite.
 * **js-cookie:** For handling browser cookies.
 * **Axios:** A promise-based HTTP client for making API requests.
 
-## Prerequisites
 
-To run this application, you will need to have the following installed on your system:
+```
 
--   **Node.js:** Make sure you have Node.js installed. You can download it from [https://nodejs.org/](https://nodejs.org/).
--   **npm:** npm comes bundled with Node.js. You'll need npm to manage project dependencies.
+## 🚀 Getting Started
+### Prerequisites
 
-## Installation
+Make sure you have **Node.js** and **npm** installed on your system.
 
-To install the necessary dependencies, navigate to the project's root directory in your terminal and run:
+Check your versions with:
+
+```bash
+node -v
+npm -v
+```
+
+Download Node.js from [https://nodejs.org](https://nodejs.org)
+
+### Installation
+
+Follow these steps to get the app running locally:
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/swadeshChhetri/BlogApp.git
+
+cd myblog
+```
+
+2. Install dependencies
 
 ```bash
 npm install
+```
+
+3. Run the development server
+
+```bash
+npm run dev
+```
+
+Visit [http://localhost:5173](http://localhost:5173) in your browser to see the app.
+
+## 🙋‍♂️ Author
+
+Made with ❤️ by **Swadesh**  
+[LinkedIn](www.linkedin.com/in/swadeshchhetri) | [Portfolio](https://myportfolio-weld-omega.vercel.app/)
+
+---
+
+Feel free to contribute or report issues to improve this project!
+
