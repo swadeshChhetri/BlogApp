@@ -1,54 +1,69 @@
-# React + TypeScript + Vite
+# MyBlogApp Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MyBlogAPP is a full-stack blog platform built using **React + Vite** for the frontend and **Laravel** for the backend. The frontend provides a fast and responsive user interface, while the backend handles APIs, authentication, and database management.
 
-Currently, two official plugins are available:
+This is the frontend for the MyBlogApp, built using React and Vite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
 
-## Expanding the ESLint configuration
+* **React:** A JavaScript library for building user interfaces.
+* **Vite:** A build tool that aims to provide a faster and leaner development experience for modern web projects.
+* **React Router DOM:** For managing navigation within the single-page application.
+* **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
+* **TypeScript:** A superset of JavaScript that adds static typing.
+* **react-hot-toast:** For displaying elegant and unobtrusive notifications.
+* **js-cookie:** For handling browser cookies.
+* **Axios:** A promise-based HTTP client for making API requests.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
+### Prerequisites
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Make sure you have **Node.js** and **npm** installed on your system.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Check your versions with:
+
+```bash
+node -v
+npm -v
 ```
+
+Download Node.js from [https://nodejs.org](https://nodejs.org)
+
+### Installation
+
+Follow these steps to get the app running locally:
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/swadeshChhetri/BlogApp.git
+
+cd BlogApp
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Run the development server
+
+```bash
+npm run dev
+```
+
+Visit [http://localhost:5173](http://localhost:5173) in your browser to see the app.
+
+## 🙋‍♂️ Author
+
+Made with ❤️ by **Swadesh**  
+[LinkedIn](www.linkedin.com/in/swadeshchhetri) | [Portfolio](https://myportfolio-weld-omega.vercel.app/)
+
+---
+
+Feel free to contribute or report issues to improve this project!
+
