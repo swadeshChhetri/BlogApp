@@ -4,8 +4,17 @@ import { useAuth } from '@/context/AuthProvider';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import api from "../../api";
 
-
+interface LoginResponse {
+  token: string;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+  };
+  message?: string;
+}
 
 const Login = () => {
   // 1. State
@@ -24,24 +33,12 @@ const Login = () => {
     setLoader(true);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        toast.error(data.message || 'Login failed');
-        return;
-      }
-
-      login(data.token, data.user);
+      const response = await api.post<LoginResponse>('/login', { email, password });
+      login(response.data.token, response.data.user);
       toast.success('Login successful');
       navigate('/');
-    } catch (error) {
-      toast.error('Something went wrong');
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || 'Login failed');
     } finally {
       setLoader(false);
     }

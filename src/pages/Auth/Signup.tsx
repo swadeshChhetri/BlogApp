@@ -3,7 +3,11 @@ import Loader from '@/components/Loader';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import api from "../../api";
 
+interface SignupResponse {
+  message: string;
+}
 
 const Signup = () => {
   // 1. States
@@ -35,28 +39,17 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({ username, email, password }),
+      const response = await api.post<SignupResponse>('/register', {
+        username: username,
+        email: email,
+        password: password,
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error(data);
-        toast.error(data.message || 'Registration failed');
-        return;
-      }
-
-      toast.success('Registration successful!');
+      toast.success(response.data.message || 'Registration successful!');
       navigate('/auth/login');
-    } catch (error) {
-      console.error('Error:', error);
-      toast.error('Something went wrong. Please try again.');
+     } catch (error: any) {
+      console.error('Error:', error?.response?.data || error);
+      toast.error(error?.response?.data?.message || 'Registration failed');
     } finally {
       setLoading(false);
     }

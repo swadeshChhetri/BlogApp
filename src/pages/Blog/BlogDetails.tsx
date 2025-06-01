@@ -2,6 +2,7 @@ import Loader from '@/components/Loader';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import api from "../../api";
 
 interface Blog {
   id: number;
@@ -23,11 +24,8 @@ const BlogDetail: React.FC = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/blog/${id}`);
-        if (!res.ok) throw new Error('Failed to fetch blog');
-
-        const data = await res.json();
-        setBlog(data);
+        const response = await api.get<Blog>(`/blog/${id}`);
+        setBlog(response.data);
       } catch (err: any) {
         toast.error(err.message || 'Failed to load blog');
         setBlog(null);

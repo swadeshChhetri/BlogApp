@@ -4,7 +4,13 @@ import axios from "axios";
 import { useAuth } from "@/context/AuthProvider";
 import Loader from "@/components/Loader";
 import toast from "react-hot-toast";
+import api from "../../api";
 
+interface Blog {
+  id: number;
+  title: string;
+  content: string;
+}
 
 const MyBlogs = () => {
   const [blogs, setBlogs] = useState<any[]>([]);
@@ -14,13 +20,8 @@ const MyBlogs = () => {
   useEffect(() => {
     const fetchMyBlogs = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/my-blogs`, {
-          // withCredentials: true, // if using cookies for auth
-          headers: {
-            Authorization: `Bearer ${token}`, // if using token
-          },
-        });
-        setBlogs(res.data);
+        const response = await api.get<Blog[]>('/my-blogs');
+        setBlogs(response.data);
       } catch (error: any) {
         toast.error(error?.message || "Error fetching blogs");
       } finally {

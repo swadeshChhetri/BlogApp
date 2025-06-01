@@ -1,16 +1,21 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { useAuth } from "@/context/AuthProvider";
 import Loader from "@/components/Loader";
 import toast from "react-hot-toast";
+import api from "../../api";
 
+interface Blog {
+  id: number;
+  title?: string;
+  content?: string;
+  tags?: string;
+  author?: string;
+}
 
 const EditBlog = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { token } = useAuth();
-  const blog = location.state?.blog;
+  const blog = location.state?.blog as Blog;
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -34,15 +39,7 @@ const EditBlog = () => {
     setLoading(true);
 
     try {
-      await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/blogs/${blog.id}`,
-        { title, content, tags, author },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await api.put(`/blogs/${blog.id}`, { title, content, tags, author });
       toast.success('Blog updated successfully!');
       navigate('/my-blogs');
     } catch (error: any) {

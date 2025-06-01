@@ -3,6 +3,7 @@ import { useAuth } from "@/context/AuthProvider";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../../api";
 
 
 interface Blog {
@@ -28,11 +29,9 @@ const BlogList: React.FC = () => {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/blogs`);
-        if (!res.ok) throw new Error('Failed to fetch blogs');
+        const response = await api.get<Blog[]>('/blogs'); // Use your Axios instance
+        setBlogs(response.data);
 
-        const data = await res.json();
-        setBlogs(data);
       } catch (err: any) {
         toast.error(err.message || 'Error fetching blogs');
         console.error('Error fetching blogs:', err);
@@ -84,7 +83,7 @@ const BlogList: React.FC = () => {
         </button>
       </div>
 
-      {currentBlogs.length === 0 ? (
+      {/* {currentBlogs.length === 0 ? (
         <p className="text-gray-500">No blogs found.</p>
       ) : (
         currentBlogs.map((blog) => (
@@ -105,6 +104,29 @@ const BlogList: React.FC = () => {
               className="text-blue-600 hover:underline"
             >
               Read More →
+            </Link>
+          </div>
+        ))
+      )} */}
+
+      {currentBlogs && Array.isArray(currentBlogs) && currentBlogs.length === 0 ? (
+        <p className="text-gray-500">No blogs found.</p>
+      ) : (
+        currentBlogs && Array.isArray(currentBlogs) && currentBlogs.map((blog) => (
+          <div
+            key={blog.id}
+            className="bg-white border rounded-lg shadow p-4 mb-4"
+          >
+            <h2 className="text-xl font-semibold">{blog.title}</h2>
+            <p className="text-sm text-gray-500 mb-2">
+              by {blog.user?.name ?? "Unknown"} ·{" "}
+              {new Date(blog.created_at).toLocaleDateString()}
+            </p>
+            <p className="text-gray-700 mb-2">
+              {blog.content.slice(0, 100)}...
+            </p>
+            <Link to={`/blog/${blog.id}`} className="text-blue-500 hover:underline">
+              Read More
             </Link>
           </div>
         ))

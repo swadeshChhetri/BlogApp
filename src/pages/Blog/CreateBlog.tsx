@@ -1,13 +1,21 @@
 import Loader from '@/components/Loader';
-import { useAuth } from '@/context/AuthProvider';
+// import { useAuth } from '@/context/AuthProvider';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from "react-hot-toast";
+import api from "../../api";
 
+interface CreateBlogPayload {
+  title: string;
+  content: string;
+  tags?: string;
+  author?: string;
+  }
+  
+  
 
 const CreateBlog = () => {
   const navigate = useNavigate();
-  const { token } = useAuth();
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -25,22 +33,15 @@ const CreateBlog = () => {
 
     setLoading(true);
 
+    const payload: CreateBlogPayload = {
+      title: title,
+      content: content,
+      tags: tags,
+      author: author,
+    };
+
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/blogs`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ title, content, tags, author }),
-        credentials: 'include',
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.message || 'Failed to create blog');
-      }
-
+      await api.post('/blogs', payload);
       toast.success('Blog created successfully!');
       navigate('/');
     } catch (err: any) {
