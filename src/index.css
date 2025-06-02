@@ -2,3 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .ProseMirror {
+    @apply outline-none whitespace-pre-wrap;
+  }
+
+  .ProseMirror h2 {
+    @apply text-2xl font-semibold mb-2;
+  }
+
+  .ProseMirror ul {
+    @apply list-disc pl-5 mb-2;
+  }
+
+  .ProseMirror ol {
+    @apply list-decimal pl-5 mb-2;
+  }
+
+  .ProseMirror li {
+    @apply mb-1;
+  }
+
+  .ProseMirror.is-editor-empty::before {
+    content: attr(data-placeholder);
+    @apply text-gray-400 float-left pointer-events-none h-0;
+    background-color: rgba(255, 0, 0, 0.1); /* light red */
+  }
+}

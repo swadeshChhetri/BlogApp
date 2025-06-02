@@ -82,9 +82,7 @@ const MyBlogs = () => {
               <p className="text-sm text-gray-500 mb-2">
                 {new Date(blog.created_at).toLocaleDateString()}
               </p>
-              <p className="text-gray-700 mb-3">
-                {blog.content.slice(0, 150)}...
-              </p>
+              <p className="text-gray-700 mb-2" dangerouslySetInnerHTML={{ __html: `${blog.content.slice(0, 100)}...` }} />
 
               <div className="flex gap-3 mt-6">
                 <Link
@@ -109,13 +107,6 @@ const MyBlogs = () => {
       )}
     </div>
   );
-
-  // function handleDelete(id: number) {
-  //   if (confirm("Are you sure you want to delete this blog?")) {
-  //     setBlogs((prev) => prev.filter((b) => b.id !== id));
-  //     // Optionally send DELETE request here
-  //   }
-  // }
 };
 
 export default MyBlogs;

@@ -65,11 +65,6 @@ const BlogList: React.FC = () => {
     );
   }
 
-  console.log("Loading:", loading);
-
-
-
-
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -82,32 +77,6 @@ const BlogList: React.FC = () => {
           + Create Blog
         </button>
       </div>
-
-      {/* {currentBlogs.length === 0 ? (
-        <p className="text-gray-500">No blogs found.</p>
-      ) : (
-        currentBlogs.map((blog) => (
-          <div
-            key={blog.id}
-            className="bg-white border rounded-lg shadow p-4 mb-4"
-          >
-            <h2 className="text-xl font-semibold">{blog.title}</h2>
-            <p className="text-sm text-gray-500 mb-2">
-              by {blog.user?.name ?? "Unknown"} ·{" "}
-              {new Date(blog.created_at).toLocaleDateString()}
-            </p>
-            <p className="text-gray-700 mb-2">
-              {blog.content.slice(0, 100)}...
-            </p>
-            <Link
-              to={`/blog/${blog.id}`}
-              className="text-blue-600 hover:underline"
-            >
-              Read More →
-            </Link>
-          </div>
-        ))
-      )} */}
 
       {currentBlogs && Array.isArray(currentBlogs) && currentBlogs.length === 0 ? (
         <p className="text-gray-500">No blogs found.</p>
@@ -122,9 +91,7 @@ const BlogList: React.FC = () => {
               by {blog.user?.name ?? "Unknown"} ·{" "}
               {new Date(blog.created_at).toLocaleDateString()}
             </p>
-            <p className="text-gray-700 mb-2">
-              {blog.content.slice(0, 100)}...
-            </p>
+            <p className="text-gray-700 mb-2" dangerouslySetInnerHTML={{ __html: `${blog.content.slice(0, 100)}...` }} />
             <Link to={`/blog/${blog.id}`} className="text-blue-500 hover:underline">
               Read More
             </Link>
