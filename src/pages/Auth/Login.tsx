@@ -18,8 +18,8 @@ interface LoginResponse {
 
 const Login = () => {
   // 1. State
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('swadesh321@gmail.com');
+  const [password, setPassword] = useState('swadesh@321');
   const [loader, setLoader] = useState(false);
   const [keepLoggedIn, setKeepLoggedIn] = useState(false); // if not used, remove
 
